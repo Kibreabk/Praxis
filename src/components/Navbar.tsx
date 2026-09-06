@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react'; // Using lucide-react for the hamburger icon
 
 const navItems = [
   { path: '/', label: 'Home' },
@@ -26,6 +27,7 @@ const navItems = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const timeoutRef = useRef<number | null>(null);
   const location = useLocation();
 
@@ -37,9 +39,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close dropdown on route change
+  // Close dropdown and mobile menu on route change
   useEffect(() => {
     setHoveredTab(null);
+    setMobileMenuOpen(false);
   }, [location.pathname]);
 
   const handleMouseEnter = (label: string) => {
@@ -56,7 +59,7 @@ export default function Navbar() {
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-        scrolled ? 'py-4 bg-black/60 backdrop-blur-xl border-b border-white/10' : 'py-6 bg-transparent border-transparent'
+        scrolled || mobileMenuOpen ? 'py-4 bg-black/80 backdrop-blur-xl border-b border-white/10' : 'py-6 bg-transparent border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -65,6 +68,7 @@ export default function Navbar() {
           Praxis
         </NavLink>
         
+        {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-2">
           {navItems.map((item) => (
             <div 
@@ -105,7 +109,7 @@ export default function Navbar() {
                       {item.subItems.map((sub, idx) => (
                         <NavLink
                           key={idx}
-                          to={item.path} // In reality these might anchor to sections, but linking to the main page is fine
+                          to={item.path}
                           onClick={() => setHoveredTab(null)}
                           className="flex flex-col gap-0.5 p-3 rounded-2xl hover:bg-white/5 transition-colors group cursor-pointer"
                         >
@@ -124,7 +128,57 @@ export default function Navbar() {
             </div>
           ))}
         </div>
+
+        {/* Mobile Menu Toggle Button */}
+        <button 
+          className="lg:hidden text-white p-2 rounded-full hover:bg-white/10 transition-colors"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {/* Mobile Navigation Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-black/90 backdrop-blur-xl border-b border-white/10 overflow-hidden"
+          >
+            <div className="px-6 py-4 flex flex-col gap-4">
+              {navItems.map((item) => (
+                <div key={item.path} className="flex flex-col gap-2">
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) => 
+                      `text-lg font-medium transition-colors ${
+                        isActive ? 'text-primary' : 'text-white'
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                  {item.subItems && (
+                    <div className="pl-4 flex flex-col gap-2 border-l border-white/10 ml-2">
+                      {item.subItems.map((sub, idx) => (
+                        <NavLink
+                          key={idx}
+                          to={item.path}
+                          className="text-sm text-zinc-400 hover:text-white transition-colors"
+                        >
+                          {sub.label}
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
