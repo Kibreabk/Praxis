@@ -275,10 +275,10 @@ export default function Extracurriculars() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
               style={{ '--brand-color': selectedProgram.brandColor } as React.CSSProperties}
-              className="relative w-full max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+              className="relative w-full max-w-3xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
             >
               {/* Modal Header */}
-              <div className="p-6 sm:p-8 border-b border-white/5 relative overflow-hidden flex-shrink-0">
+              <div className="p-5 sm:p-6 border-b border-white/5 relative overflow-hidden flex-shrink-0">
                 <div 
                   className="absolute inset-0 opacity-10 blur-3xl pointer-events-none"
                   style={{ backgroundColor: 'var(--brand-color)' }}
@@ -289,8 +289,8 @@ export default function Extracurriculars() {
                 >
                   <span className="material-symbols-outlined text-[20px]" style={{ fontFamily: 'Google Symbols' }}>close</span>
                 </button>
-                <div className="flex items-center gap-5 relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-white border border-white/20 p-2 flex-shrink-0 flex items-center justify-center shadow-[0_0_20px_var(--brand-color)]">
+                <div className="flex items-center gap-4 sm:gap-5 relative z-10">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-white/20 p-2 flex-shrink-0 flex items-center justify-center shadow-[0_0_20px_var(--brand-color)]">
                     <img 
                       src={getLogoUrl(selectedProgram.link)} 
                       alt={`${selectedProgram.name} logo`} 
@@ -302,12 +302,12 @@ export default function Extracurriculars() {
                     />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-white leading-tight mb-2" style={{ color: 'var(--brand-color)' }}>
+                    <h2 className="text-xl sm:text-2xl font-bold text-white leading-tight mb-2" style={{ color: 'var(--brand-color)' }}>
                       {selectedProgram.name}
                     </h2>
                     <div className="flex flex-wrap gap-2">
                       {selectedProgram.category.map(cat => (
-                        <span key={cat} className="text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-white/5 px-2.5 py-1 rounded border border-white/10">
+                        <span key={cat} className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-white/5 px-2.5 py-1 rounded border border-white/10">
                           {cat}
                         </span>
                       ))}
@@ -317,79 +317,79 @@ export default function Extracurriculars() {
               </div>
 
               {/* Modal Body */}
-              <div className="p-6 sm:p-8 overflow-y-auto custom-scrollbar flex-grow">
-                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-8">
+              <div className="p-5 sm:p-6 overflow-y-auto custom-scrollbar flex-grow">
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
                   {selectedProgram.description}
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-6">
                   {/* Deadline Box */}
-                  <div className="bg-orange-500/5 border border-orange-500/20 rounded-2xl p-5">
-                    <div className="flex items-center gap-2 mb-3 text-orange-400">
-                      <span className="material-symbols-outlined" style={{ fontFamily: 'Google Symbols' }}>event_upcoming</span>
-                      <h4 className="font-bold text-sm tracking-wide uppercase">Application Timeline</h4>
+                  <div className="bg-orange-500/5 border border-orange-500/20 rounded-2xl p-4 sm:p-5">
+                    <div className="flex items-center gap-2 mb-2 sm:mb-3 text-orange-400">
+                      <span className="material-symbols-outlined text-[18px] sm:text-[20px]" style={{ fontFamily: 'Google Symbols' }}>event_upcoming</span>
+                      <h4 className="font-bold text-xs sm:text-sm tracking-wide uppercase">Application Timeline</h4>
                     </div>
-                    <p className="text-white font-medium text-lg mb-2">{selectedProgram.deadline}</p>
-                    <p className="text-orange-200/60 text-xs leading-relaxed">
+                    <p className="text-white font-medium text-base sm:text-lg mb-2">{selectedProgram.deadline}</p>
+                    <p className="text-orange-200/60 text-[11px] sm:text-xs leading-relaxed">
                       Applications typically open 1-3 months prior. Dates shift annually, so check the official site early!
                     </p>
                   </div>
 
                   {/* Requirements Box */}
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-                    <div className="flex items-center gap-2 mb-3 text-gray-300">
-                      <span className="material-symbols-outlined" style={{ fontFamily: 'Google Symbols' }}>task_alt</span>
-                      <h4 className="font-bold text-sm tracking-wide uppercase">Prerequisites</h4>
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5">
+                    <div className="flex items-center gap-2 mb-2 sm:mb-3 text-gray-300">
+                      <span className="material-symbols-outlined text-[18px] sm:text-[20px]" style={{ fontFamily: 'Google Symbols' }}>task_alt</span>
+                      <h4 className="font-bold text-xs sm:text-sm tracking-wide uppercase">Prerequisites</h4>
                     </div>
-                    <ul className="flex flex-col gap-2">
+                    <ul className="flex flex-col gap-1.5 sm:gap-2">
                       {selectedProgram.requirements.map((req, i) => (
-                        <li key={i} className="text-sm font-medium text-gray-400 flex items-center gap-2">
+                        <li key={i} className="text-xs sm:text-sm font-medium text-gray-400 flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-color)]"></span>
                           {req}
                         </li>
                       ))}
                     </ul>
-                    <p className="text-gray-500 text-xs leading-relaxed mt-3 pt-3 border-t border-white/5">
+                    <p className="text-gray-500 text-[11px] sm:text-xs leading-relaxed mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-white/5">
                       These are baseline requirements. Top applicants often submit additional portfolios.
                     </p>
                   </div>
                 </div>
                 
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {selectedProgram.financialAid.includes("100%") || selectedProgram.financialAid.includes("Free") ? (
-                    <span className="px-3 py-1.5 rounded-lg text-sm font-bold bg-green-500/20 text-green-300 border border-green-500/30 flex items-center gap-2">
-                      <span className="material-symbols-outlined text-[18px]" style={{ fontFamily: 'Google Symbols' }}>payments</span> Fully Funded
+                    <span className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-green-500/20 text-green-300 border border-green-500/30 flex items-center gap-1.5 sm:gap-2">
+                      <span className="material-symbols-outlined text-[16px] sm:text-[18px]" style={{ fontFamily: 'Google Symbols' }}>payments</span> Fully Funded
                     </span>
                   ) : (
-                    <span className="px-3 py-1.5 rounded-lg text-sm font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-2">
-                      <span className="material-symbols-outlined text-[18px]" style={{ fontFamily: 'Google Symbols' }}>payments</span> Aid Available
+                    <span className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1.5 sm:gap-2">
+                      <span className="material-symbols-outlined text-[16px] sm:text-[18px]" style={{ fontFamily: 'Google Symbols' }}>payments</span> Aid Available
                     </span>
                   )}
                   {selectedProgram.international.includes("Ethiopia") || selectedProgram.international.includes("African") ? (
-                    <span className="px-3 py-1.5 rounded-lg text-sm font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 flex items-center gap-2">
-                      <span className="material-symbols-outlined text-[18px]" style={{ fontFamily: 'Google Symbols' }}>public</span> Ethiopia Focus
+                    <span className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 flex items-center gap-1.5 sm:gap-2">
+                      <span className="material-symbols-outlined text-[16px] sm:text-[18px]" style={{ fontFamily: 'Google Symbols' }}>public</span> Ethiopia Focus
                     </span>
                   ) : null}
                 </div>
               </div>
 
               {/* Modal Footer */}
-              <div className="p-6 sm:p-8 border-t border-white/5 bg-black/20 flex justify-end flex-shrink-0">
+              <div className="p-5 sm:p-6 border-t border-white/5 bg-black/20 flex justify-end flex-shrink-0">
                 {selectedProgram.link !== '#' ? (
                   <a 
                     href={selectedProgram.link} 
                     target="_blank" 
                     rel="noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                    className="flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.1)] text-sm sm:text-base"
                     style={{ backgroundColor: 'var(--brand-color)' }}
                   >
                     Visit Official Site
-                    <span className="material-symbols-outlined text-[20px]" style={{ fontFamily: 'Google Symbols' }}>open_in_new</span>
+                    <span className="material-symbols-outlined text-[18px] sm:text-[20px]" style={{ fontFamily: 'Google Symbols' }}>open_in_new</span>
                   </a>
                 ) : (
-                  <div className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-gray-400 bg-white/5 border border-white/10">
+                  <div className="flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-gray-400 bg-white/5 border border-white/10 text-sm sm:text-base">
                     Self-Guided Activity
-                    <span className="material-symbols-outlined text-[20px]" style={{ fontFamily: 'Google Symbols' }}>emoji_objects</span>
+                    <span className="material-symbols-outlined text-[18px] sm:text-[20px]" style={{ fontFamily: 'Google Symbols' }}>emoji_objects</span>
                   </div>
                 )}
               </div>
