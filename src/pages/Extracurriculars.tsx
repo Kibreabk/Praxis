@@ -185,8 +185,9 @@ export default function Extracurriculars() {
                     </span>
                   ) : null}
                   {program.deadline && (
-                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30 flex items-center gap-1">
-                      <span className="material-symbols-outlined text-[14px]" style={{ fontFamily: 'Google Symbols' }}>schedule</span>
+                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-orange-500/10 text-orange-300 border border-orange-500/30 flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-[14px]" style={{ fontFamily: 'Google Symbols' }}>event_upcoming</span>
+                      <span className="text-orange-400/70 font-bold tracking-wider uppercase text-[9px]">Deadline:</span>
                       {program.deadline}
                     </span>
                   )}
