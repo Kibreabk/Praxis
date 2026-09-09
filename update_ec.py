@@ -47,11 +47,12 @@ deadlines = {
 }
 
 def replacer_id(match):
-    id_val = match.group(1)
+    indent = match.group(1)
+    id_val = match.group(2)
     deadline = deadlines.get(id_val, "N/A (Self-Paced)")
-    return f'id: "{id_val}",\n    deadline: "{deadline}"'
+    return f'{indent}id: "{id_val}",\n{indent}deadline: "{deadline}"'
 
-content = re.sub(r'id:\s*"([^"]+)"', replacer_id, content)
+content = re.sub(r'(^[ \t]*)id:\s*"([^"]+)"', replacer_id, content, flags=re.MULTILINE)
 
 with open("src/data/extracurriculars.ts", "w", encoding="utf-8") as f:
     f.write(content)
