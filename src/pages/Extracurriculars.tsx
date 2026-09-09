@@ -212,10 +212,27 @@ export default function Extracurriculars() {
 
                 {/* Requirements */}
                 <div className="mb-6 bg-black/40 p-4 rounded-xl border border-white/5 relative z-10">
-                  <h4 className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-3">What You Need</h4>
+                  <div className="flex items-center gap-1.5 mb-3 relative group/reqs w-fit">
+                    <h4 className="text-[11px] font-bold text-gray-500 uppercase tracking-wider cursor-help transition-colors group-hover/reqs:text-gray-300">
+                      What You Need
+                    </h4>
+                    <span className="material-symbols-outlined text-[13px] text-gray-500 group-hover/reqs:text-gray-300 transition-colors cursor-help" style={{ fontFamily: 'Google Symbols' }}>info</span>
+                    
+                    {/* Interactive Tooltip */}
+                    <div className="absolute bottom-full left-0 mb-2 w-52 p-3 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.05)] opacity-0 invisible group-hover/reqs:opacity-100 group-hover/reqs:visible transition-all duration-300 z-50 group-hover/reqs:-translate-y-1">
+                      <div className="text-[11px] text-gray-300 font-medium leading-relaxed text-center">
+                        <span className="text-white font-bold mb-1.5 block">Prerequisites</span>
+                        These are the standard requirements. Top applicants often submit additional optional materials to stand out. Always check the official website!
+                      </div>
+                      {/* Triangle arrow */}
+                      <div className="absolute top-full left-8 -translate-x-1/2 -mt-[1px] border-[5px] border-transparent border-t-black/90"></div>
+                      <div className="absolute top-full left-8 -translate-x-1/2 -mt-[2px] border-[6px] border-transparent border-t-white/10 -z-10"></div>
+                    </div>
+                  </div>
+
                   <ul className="flex flex-wrap gap-2">
                     {program.requirements.map((req, i) => (
-                       <li key={i} className="text-xs font-medium text-gray-300 bg-white/5 px-2.5 py-1 rounded border border-white/10 flex items-center gap-1.5">
+                       <li key={i} className="text-xs font-medium text-gray-300 bg-white/5 px-2.5 py-1 rounded border border-white/10 flex items-center gap-1.5 hover:bg-white/10 transition-colors cursor-default">
                           <span className="w-1 h-1 rounded-full group-hover:bg-[var(--brand-color)] bg-white/30 transition-colors"></span>
                           {req}
                        </li>
