@@ -184,6 +184,12 @@ export default function Extracurriculars() {
                       🌍 Ethiopia Focus
                     </span>
                   ) : null}
+                  {program.deadline && (
+                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30 flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[14px]" style={{ fontFamily: 'Google Symbols' }}>schedule</span>
+                      {program.deadline}
+                    </span>
+                  )}
                 </div>
 
                 <p className="text-sm text-gray-400 line-clamp-3 mb-6 flex-grow relative z-10">
