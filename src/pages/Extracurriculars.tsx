@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { officialPrograms, officialCategories } from '../data/extracurriculars';
+import { officialPrograms, officialCategories, type Program } from '../data/extracurriculars';
 
 const getDomain = (url: string) => {
   if (url === '#') return '';
@@ -20,6 +20,7 @@ const getLogoUrl = (url: string) => {
 export default function Extracurriculars() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [fundingFilter, setFundingFilter] = useState<string>('All'); // 'All', '100% Funded', 'Available'
+  const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
 
   const toggleCategory = (cat: string) => {
     setSelectedCategories(prev => 
@@ -124,13 +125,14 @@ export default function Extracurriculars() {
               <motion.div
                 layout
                 key={program.id}
+                onClick={() => setSelectedProgram(program)}
                 style={{ '--brand-color': program.brandColor } as React.CSSProperties}
                 initial={{ opacity: 0, y: 50, scale: 0.9 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: false, amount: 0.1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
-                className="group glass-dark rounded-3xl p-6 border border-white/10 hover:border-[var(--brand-color)] transition-all duration-300 flex flex-col h-full relative overflow-hidden hover:-translate-y-1"
+                className="group glass-dark rounded-3xl p-6 border border-white/10 hover:border-[var(--brand-color)] transition-all duration-300 flex flex-col h-full relative overflow-hidden hover:-translate-y-1 cursor-pointer"
               >
                 {/* Background Hover Glow */}
                 <div 
@@ -172,11 +174,11 @@ export default function Extracurriculars() {
                 <div className="flex flex-wrap gap-2 mb-4 relative z-10">
                   {program.financialAid.includes("100%") || program.financialAid.includes("Free") ? (
                     <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-green-500/20 text-green-300 border border-green-500/30">
-                      ✓ Fully Funded
+                      💰 Fully Funded
                     </span>
                   ) : (
                     <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">
-                      $ Aid Available
+                      💲 Aid Available
                     </span>
                   )}
                   {program.international.includes("Ethiopia") || program.international.includes("African") ? (
@@ -185,24 +187,11 @@ export default function Extracurriculars() {
                     </span>
                   ) : null}
                   {program.deadline && (
-                    <button type="button" className="relative group/deadline outline-none text-left cursor-pointer">
-                      <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-orange-500/10 text-orange-300 border border-orange-500/30 flex items-center gap-1.5 transition-all group-hover/deadline:bg-orange-500/20 group-hover/deadline:border-orange-500/50 group-focus/deadline:bg-orange-500/20 group-focus/deadline:border-orange-500/50">
-                        <span className="material-symbols-outlined text-[14px]" style={{ fontFamily: 'Google Symbols' }}>event_upcoming</span>
-                        <span className="text-orange-400/70 font-bold tracking-wider uppercase text-[9px]">Deadline:</span>
-                        <span className="underline decoration-orange-500/50 underline-offset-2">{program.deadline}</span>
-                      </span>
-                      
-                      {/* Interactive Tooltip */}
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 p-3 bg-black/90 backdrop-blur-xl border border-orange-500/30 rounded-xl shadow-[0_0_20px_rgba(249,115,22,0.15)] opacity-0 invisible group-hover/deadline:opacity-100 group-hover/deadline:visible group-focus/deadline:opacity-100 group-focus/deadline:visible transition-all duration-300 z-50 group-hover/deadline:-translate-y-1 group-focus/deadline:-translate-y-1 pointer-events-none">
-                        <div className="text-[11px] text-gray-300 font-medium leading-relaxed text-center">
-                          <span className="text-orange-400 font-bold mb-1.5 block">Application Timeline</span>
-                          Applications usually open 1-3 months prior to this deadline. Dates shift slightly each year, so verify on the official website early!
-                        </div>
-                        {/* Triangle arrow */}
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-[5px] border-transparent border-t-black/90"></div>
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[2px] border-[6px] border-transparent border-t-orange-500/30 -z-10"></div>
-                      </div>
-                    </button>
+                    <div className="px-2.5 py-1 rounded-md text-xs font-bold bg-orange-500/10 text-orange-300 border border-orange-500/30 flex items-center gap-1.5 transition-all group-hover:bg-orange-500/20 group-hover:border-orange-500/50">
+                      <span className="material-symbols-outlined text-[14px]" style={{ fontFamily: 'Google Symbols' }}>event_upcoming</span>
+                      <span className="text-orange-400/70 font-bold tracking-wider uppercase text-[9px]">Deadline:</span>
+                      <span>{program.deadline}</span>
+                    </div>
                   )}
                 </div>
 
@@ -212,27 +201,15 @@ export default function Extracurriculars() {
 
                 {/* Requirements */}
                 <div className="mb-6 bg-black/40 p-4 rounded-xl border border-white/5 relative z-10">
-                  <button type="button" className="flex items-center gap-1.5 mb-3 relative group/reqs w-fit outline-none text-left cursor-pointer">
-                    <h4 className="text-[11px] font-bold text-gray-500 uppercase tracking-wider transition-colors group-hover/reqs:text-gray-300 group-focus/reqs:text-gray-300 underline decoration-gray-500/50 underline-offset-2">
+                  <div className="flex items-center gap-1.5 mb-3 w-fit">
+                    <h4 className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
                       What You Need
                     </h4>
-                    <span className="material-symbols-outlined text-[13px] text-gray-500 group-hover/reqs:text-gray-300 group-focus/reqs:text-gray-300 transition-colors" style={{ fontFamily: 'Google Symbols' }}>info</span>
-                    
-                    {/* Interactive Tooltip */}
-                    <div className="absolute bottom-full left-0 mb-2 w-52 p-3 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.05)] opacity-0 invisible group-hover/reqs:opacity-100 group-hover/reqs:visible group-focus/reqs:opacity-100 group-focus/reqs:visible transition-all duration-300 z-50 group-hover/reqs:-translate-y-1 group-focus/reqs:-translate-y-1 pointer-events-none">
-                      <div className="text-[11px] text-gray-300 font-medium leading-relaxed text-center">
-                        <span className="text-white font-bold mb-1.5 block">Prerequisites</span>
-                        These are the standard requirements. Top applicants often submit additional optional materials to stand out. Always check the official website!
-                      </div>
-                      {/* Triangle arrow */}
-                      <div className="absolute top-full left-8 -translate-x-1/2 -mt-[1px] border-[5px] border-transparent border-t-black/90"></div>
-                      <div className="absolute top-full left-8 -translate-x-1/2 -mt-[2px] border-[6px] border-transparent border-t-white/10 -z-10"></div>
-                    </div>
-                  </button>
+                  </div>
 
                   <ul className="flex flex-wrap gap-2">
                     {program.requirements.map((req, i) => (
-                       <li key={i} className="text-xs font-medium text-gray-300 bg-white/5 px-2.5 py-1 rounded border border-white/10 flex items-center gap-1.5 hover:bg-white/10 transition-colors cursor-default">
+                       <li key={i} className="text-xs font-medium text-gray-300 bg-white/5 px-2.5 py-1 rounded border border-white/10 flex items-center gap-1.5 transition-colors">
                           <span className="w-1 h-1 rounded-full group-hover:bg-[var(--brand-color)] bg-white/30 transition-colors"></span>
                           {req}
                        </li>
@@ -247,6 +224,7 @@ export default function Extracurriculars() {
                       href={program.link} 
                       target="_blank" 
                       rel="noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="flex items-center justify-between gap-2 w-full text-sm font-medium text-gray-300 transition-colors group-hover:text-[var(--brand-color)]"
                     >
                       Visit Official Site
@@ -280,6 +258,145 @@ export default function Extracurriculars() {
         )}
 
       </div>
+
+      {/* Detail Modal */}
+      <AnimatePresence>
+        {selectedProgram && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" onClick={() => setSelectedProgram(null)}>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              style={{ '--brand-color': selectedProgram.brandColor } as React.CSSProperties}
+              className="relative w-full max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+            >
+              {/* Modal Header */}
+              <div className="p-6 sm:p-8 border-b border-white/5 relative overflow-hidden flex-shrink-0">
+                <div 
+                  className="absolute inset-0 opacity-10 blur-3xl pointer-events-none"
+                  style={{ backgroundColor: 'var(--brand-color)' }}
+                ></div>
+                <button 
+                  onClick={() => setSelectedProgram(null)}
+                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white transition-colors z-10"
+                >
+                  <span className="material-symbols-outlined text-[20px]" style={{ fontFamily: 'Google Symbols' }}>close</span>
+                </button>
+                <div className="flex items-center gap-5 relative z-10">
+                  <div className="w-16 h-16 rounded-2xl bg-white border border-white/20 p-2 flex-shrink-0 flex items-center justify-center shadow-[0_0_20px_var(--brand-color)]">
+                    <img 
+                      src={getLogoUrl(selectedProgram.link)} 
+                      alt={`${selectedProgram.name} logo`} 
+                      className="w-full h-full object-contain"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                        (e.target as HTMLImageElement).parentElement!.innerHTML = `<span class="text-2xl font-bold text-gray-800">${selectedProgram.name.charAt(0)}</span>`;
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-white leading-tight mb-2" style={{ color: 'var(--brand-color)' }}>
+                      {selectedProgram.name}
+                    </h2>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProgram.category.map(cat => (
+                        <span key={cat} className="text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-white/5 px-2.5 py-1 rounded border border-white/10">
+                          {cat}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Modal Body */}
+              <div className="p-6 sm:p-8 overflow-y-auto custom-scrollbar flex-grow">
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-8">
+                  {selectedProgram.description}
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  {/* Deadline Box */}
+                  <div className="bg-orange-500/5 border border-orange-500/20 rounded-2xl p-5">
+                    <div className="flex items-center gap-2 mb-3 text-orange-400">
+                      <span className="material-symbols-outlined" style={{ fontFamily: 'Google Symbols' }}>event_upcoming</span>
+                      <h4 className="font-bold text-sm tracking-wide uppercase">Application Timeline</h4>
+                    </div>
+                    <p className="text-white font-medium text-lg mb-2">{selectedProgram.deadline}</p>
+                    <p className="text-orange-200/60 text-xs leading-relaxed">
+                      Applications typically open 1-3 months prior. Dates shift annually, so check the official site early!
+                    </p>
+                  </div>
+
+                  {/* Requirements Box */}
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <div className="flex items-center gap-2 mb-3 text-gray-300">
+                      <span className="material-symbols-outlined" style={{ fontFamily: 'Google Symbols' }}>task_alt</span>
+                      <h4 className="font-bold text-sm tracking-wide uppercase">Prerequisites</h4>
+                    </div>
+                    <ul className="flex flex-col gap-2">
+                      {selectedProgram.requirements.map((req, i) => (
+                        <li key={i} className="text-sm font-medium text-gray-400 flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-color)]"></span>
+                          {req}
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="text-gray-500 text-xs leading-relaxed mt-3 pt-3 border-t border-white/5">
+                      These are baseline requirements. Top applicants often submit additional portfolios.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex flex-wrap gap-3">
+                  {selectedProgram.financialAid.includes("100%") || selectedProgram.financialAid.includes("Free") ? (
+                    <span className="px-3 py-1.5 rounded-lg text-sm font-bold bg-green-500/20 text-green-300 border border-green-500/30 flex items-center gap-2">
+                      <span className="material-symbols-outlined text-[18px]" style={{ fontFamily: 'Google Symbols' }}>payments</span> Fully Funded
+                    </span>
+                  ) : (
+                    <span className="px-3 py-1.5 rounded-lg text-sm font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-2">
+                      <span className="material-symbols-outlined text-[18px]" style={{ fontFamily: 'Google Symbols' }}>payments</span> Aid Available
+                    </span>
+                  )}
+                  {selectedProgram.international.includes("Ethiopia") || selectedProgram.international.includes("African") ? (
+                    <span className="px-3 py-1.5 rounded-lg text-sm font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 flex items-center gap-2">
+                      <span className="material-symbols-outlined text-[18px]" style={{ fontFamily: 'Google Symbols' }}>public</span> Ethiopia Focus
+                    </span>
+                  ) : null}
+                </div>
+              </div>
+
+              {/* Modal Footer */}
+              <div className="p-6 sm:p-8 border-t border-white/5 bg-black/20 flex justify-end flex-shrink-0">
+                {selectedProgram.link !== '#' ? (
+                  <a 
+                    href={selectedProgram.link} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                    style={{ backgroundColor: 'var(--brand-color)' }}
+                  >
+                    Visit Official Site
+                    <span className="material-symbols-outlined text-[20px]" style={{ fontFamily: 'Google Symbols' }}>open_in_new</span>
+                  </a>
+                ) : (
+                  <div className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-gray-400 bg-white/5 border border-white/10">
+                    Self-Guided Activity
+                    <span className="material-symbols-outlined text-[20px]" style={{ fontFamily: 'Google Symbols' }}>emoji_objects</span>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
