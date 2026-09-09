@@ -185,15 +185,15 @@ export default function Extracurriculars() {
                     </span>
                   ) : null}
                   {program.deadline && (
-                    <div className="relative group/deadline">
-                      <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-orange-500/10 text-orange-300 border border-orange-500/30 flex items-center gap-1.5 cursor-help transition-all hover:bg-orange-500/20 hover:border-orange-500/50">
+                    <button type="button" className="relative group/deadline outline-none text-left cursor-pointer">
+                      <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-orange-500/10 text-orange-300 border border-orange-500/30 flex items-center gap-1.5 transition-all group-hover/deadline:bg-orange-500/20 group-hover/deadline:border-orange-500/50 group-focus/deadline:bg-orange-500/20 group-focus/deadline:border-orange-500/50">
                         <span className="material-symbols-outlined text-[14px]" style={{ fontFamily: 'Google Symbols' }}>event_upcoming</span>
                         <span className="text-orange-400/70 font-bold tracking-wider uppercase text-[9px]">Deadline:</span>
-                        {program.deadline}
+                        <span className="underline decoration-orange-500/50 underline-offset-2">{program.deadline}</span>
                       </span>
                       
                       {/* Interactive Tooltip */}
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 p-3 bg-black/90 backdrop-blur-xl border border-orange-500/30 rounded-xl shadow-[0_0_20px_rgba(249,115,22,0.15)] opacity-0 invisible group-hover/deadline:opacity-100 group-hover/deadline:visible transition-all duration-300 z-50 group-hover/deadline:-translate-y-1">
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 p-3 bg-black/90 backdrop-blur-xl border border-orange-500/30 rounded-xl shadow-[0_0_20px_rgba(249,115,22,0.15)] opacity-0 invisible group-hover/deadline:opacity-100 group-hover/deadline:visible group-focus/deadline:opacity-100 group-focus/deadline:visible transition-all duration-300 z-50 group-hover/deadline:-translate-y-1 group-focus/deadline:-translate-y-1 pointer-events-none">
                         <div className="text-[11px] text-gray-300 font-medium leading-relaxed text-center">
                           <span className="text-orange-400 font-bold mb-1.5 block">Application Timeline</span>
                           Applications usually open 1-3 months prior to this deadline. Dates shift slightly each year, so verify on the official website early!
@@ -202,7 +202,7 @@ export default function Extracurriculars() {
                         <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-[5px] border-transparent border-t-black/90"></div>
                         <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[2px] border-[6px] border-transparent border-t-orange-500/30 -z-10"></div>
                       </div>
-                    </div>
+                    </button>
                   )}
                 </div>
 
@@ -212,14 +212,14 @@ export default function Extracurriculars() {
 
                 {/* Requirements */}
                 <div className="mb-6 bg-black/40 p-4 rounded-xl border border-white/5 relative z-10">
-                  <div className="flex items-center gap-1.5 mb-3 relative group/reqs w-fit">
-                    <h4 className="text-[11px] font-bold text-gray-500 uppercase tracking-wider cursor-help transition-colors group-hover/reqs:text-gray-300">
+                  <button type="button" className="flex items-center gap-1.5 mb-3 relative group/reqs w-fit outline-none text-left cursor-pointer">
+                    <h4 className="text-[11px] font-bold text-gray-500 uppercase tracking-wider transition-colors group-hover/reqs:text-gray-300 group-focus/reqs:text-gray-300 underline decoration-gray-500/50 underline-offset-2">
                       What You Need
                     </h4>
-                    <span className="material-symbols-outlined text-[13px] text-gray-500 group-hover/reqs:text-gray-300 transition-colors cursor-help" style={{ fontFamily: 'Google Symbols' }}>info</span>
+                    <span className="material-symbols-outlined text-[13px] text-gray-500 group-hover/reqs:text-gray-300 group-focus/reqs:text-gray-300 transition-colors" style={{ fontFamily: 'Google Symbols' }}>info</span>
                     
                     {/* Interactive Tooltip */}
-                    <div className="absolute bottom-full left-0 mb-2 w-52 p-3 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.05)] opacity-0 invisible group-hover/reqs:opacity-100 group-hover/reqs:visible transition-all duration-300 z-50 group-hover/reqs:-translate-y-1">
+                    <div className="absolute bottom-full left-0 mb-2 w-52 p-3 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.05)] opacity-0 invisible group-hover/reqs:opacity-100 group-hover/reqs:visible group-focus/reqs:opacity-100 group-focus/reqs:visible transition-all duration-300 z-50 group-hover/reqs:-translate-y-1 group-focus/reqs:-translate-y-1 pointer-events-none">
                       <div className="text-[11px] text-gray-300 font-medium leading-relaxed text-center">
                         <span className="text-white font-bold mb-1.5 block">Prerequisites</span>
                         These are the standard requirements. Top applicants often submit additional optional materials to stand out. Always check the official website!
@@ -228,7 +228,7 @@ export default function Extracurriculars() {
                       <div className="absolute top-full left-8 -translate-x-1/2 -mt-[1px] border-[5px] border-transparent border-t-black/90"></div>
                       <div className="absolute top-full left-8 -translate-x-1/2 -mt-[2px] border-[6px] border-transparent border-t-white/10 -z-10"></div>
                     </div>
-                  </div>
+                  </button>
 
                   <ul className="flex flex-wrap gap-2">
                     {program.requirements.map((req, i) => (
