@@ -141,8 +141,15 @@ export default function Extracurriculars() {
                   style={{ backgroundColor: 'var(--brand-color)' }}
                 ></div>
 
+                {/* View Details Indicator */}
+                <div className="absolute top-5 right-5 z-20 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider transition-all duration-300 bg-white/5 border border-white/10 px-2.5 py-1.5 rounded-full backdrop-blur-md text-gray-400 opacity-80 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-x-2 sm:group-hover:translate-x-0 group-hover:text-[var(--brand-color)] group-hover:border-[var(--brand-color)] pointer-events-none shadow-lg">
+                  <span className="hidden sm:inline">Click for Info</span>
+                  <span className="sm:hidden">Tap for Info</span>
+                  <span className="material-symbols-outlined text-[14px]" style={{ fontFamily: 'Google Symbols' }}>ads_click</span>
+                </div>
+
                 {/* Card Header (Logo & Name) */}
-                <div className="flex items-start gap-4 mb-5 relative z-10">
+                <div className="flex items-start gap-4 mb-5 relative z-10 pr-24 sm:pr-0">
                   <div className="w-14 h-14 rounded-2xl bg-white border border-white/20 p-2 flex-shrink-0 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_20px_var(--brand-color)]">
                     <img 
                       src={getLogoUrl(program.link)} 
