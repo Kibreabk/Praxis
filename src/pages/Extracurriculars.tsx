@@ -185,11 +185,24 @@ export default function Extracurriculars() {
                     </span>
                   ) : null}
                   {program.deadline && (
-                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-orange-500/10 text-orange-300 border border-orange-500/30 flex items-center gap-1.5">
-                      <span className="material-symbols-outlined text-[14px]" style={{ fontFamily: 'Google Symbols' }}>event_upcoming</span>
-                      <span className="text-orange-400/70 font-bold tracking-wider uppercase text-[9px]">Deadline:</span>
-                      {program.deadline}
-                    </span>
+                    <div className="relative group/deadline">
+                      <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-orange-500/10 text-orange-300 border border-orange-500/30 flex items-center gap-1.5 cursor-help transition-all hover:bg-orange-500/20 hover:border-orange-500/50">
+                        <span className="material-symbols-outlined text-[14px]" style={{ fontFamily: 'Google Symbols' }}>event_upcoming</span>
+                        <span className="text-orange-400/70 font-bold tracking-wider uppercase text-[9px]">Deadline:</span>
+                        {program.deadline}
+                      </span>
+                      
+                      {/* Interactive Tooltip */}
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 p-3 bg-black/90 backdrop-blur-xl border border-orange-500/30 rounded-xl shadow-[0_0_20px_rgba(249,115,22,0.15)] opacity-0 invisible group-hover/deadline:opacity-100 group-hover/deadline:visible transition-all duration-300 z-50 group-hover/deadline:-translate-y-1">
+                        <div className="text-[11px] text-gray-300 font-medium leading-relaxed text-center">
+                          <span className="text-orange-400 font-bold mb-1.5 block">Application Timeline</span>
+                          Applications usually open 1-3 months prior to this deadline. Dates shift slightly each year, so verify on the official website early!
+                        </div>
+                        {/* Triangle arrow */}
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-[5px] border-transparent border-t-black/90"></div>
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[2px] border-[6px] border-transparent border-t-orange-500/30 -z-10"></div>
+                      </div>
+                    </div>
                   )}
                 </div>
 
