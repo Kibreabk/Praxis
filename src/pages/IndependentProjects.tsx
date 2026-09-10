@@ -168,12 +168,12 @@ export default function IndependentProjects() {
                       className="flex items-center justify-between gap-2 w-full text-sm font-medium text-gray-300 transition-colors group-hover:text-[var(--brand-color)]"
                     >
                       Visit Official Site
-                      <span className="material-symbols-outlined text-[18px] transition-colors" style={{ fontFamily: 'Google Symbols' }}>open_in_new</span>
+                      <span className="material-symbols-outlined text-[18px] transition-colors">open_in_new</span>
                     </a>
                   ) : (
                     <div className="flex items-center justify-between gap-2 w-full text-sm font-medium text-gray-400">
                       Self-Guided Activity
-                      <span className="material-symbols-outlined text-[18px]" style={{ fontFamily: 'Google Symbols' }}>emoji_objects</span>
+                      <span className="material-symbols-outlined text-[18px]">emoji_objects</span>
                     </div>
                   )}
                 </div>
@@ -185,7 +185,7 @@ export default function IndependentProjects() {
 
         {filteredPrograms.length === 0 && (
           <div className="w-full py-20 text-center">
-            <span className="material-symbols-outlined text-6xl text-gray-600 mb-4" style={{ fontFamily: 'Google Symbols' }}>search_off</span>
+            <span className="material-symbols-outlined text-6xl text-gray-600 mb-4">search_off</span>
             <h3 className="text-xl font-bold text-gray-400 mb-2">No programs found</h3>
             <p className="text-gray-500">Try adjusting your filters to see more results.</p>
             <button 

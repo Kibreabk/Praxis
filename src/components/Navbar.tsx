@@ -64,7 +64,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <NavLink to="/" className="text-2xl font-bold font-sans tracking-tight flex items-center gap-2 text-white">
-          <span className="material-symbols-outlined text-primary" style={{ fontFamily: 'Google Symbols' }}>public</span>
+          <span className="material-symbols-outlined text-primary">public</span>
           Praxis
         </NavLink>
         
@@ -89,7 +89,7 @@ export default function Navbar() {
               >
                 {item.label}
                 {item.subItems && (
-                  <span className="material-symbols-outlined text-[16px]" style={{ fontFamily: 'Google Symbols' }}>
+                  <span className="material-symbols-outlined text-[16px]">
                     expand_more
                   </span>
                 )}

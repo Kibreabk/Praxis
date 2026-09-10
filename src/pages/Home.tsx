@@ -53,7 +53,7 @@ export default function Home() {
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                   className="material-symbols-outlined" 
-                  style={{ fontFamily: 'Google Symbols' }}
+                 
                 >
                   arrow_forward
                 </motion.span>
@@ -116,12 +116,12 @@ export default function Home() {
                 
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center border border-white/10 mb-8 group-hover:scale-110 transition-transform duration-500">
-                    <span className="material-symbols-outlined text-zinc-400 group-hover:text-white transition-colors" style={{ fontFamily: 'Google Symbols' }}>school</span>
+                    <span className="material-symbols-outlined text-zinc-400 group-hover:text-white transition-colors">school</span>
                   </div>
                   
                   <h3 className="text-3xl font-sans font-medium text-white mb-4 flex items-center justify-between tracking-tight">
                     College Resources
-                    <span className="text-zinc-500 material-symbols-outlined group-hover:text-white transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1" style={{ fontFamily: 'Google Symbols' }}>arrow_outward</span>
+                    <span className="text-zinc-500 material-symbols-outlined group-hover:text-white transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1">arrow_outward</span>
                   </h3>
                   <p className="text-lg text-zinc-400 leading-relaxed mt-auto">
                     A curated database of elite platforms, full-ride university lists, SAT prep materials, and top-tier admissions mentors.
@@ -145,12 +145,12 @@ export default function Home() {
                 
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center border border-blue-500/20 mb-8 group-hover:scale-110 transition-transform duration-500">
-                    <span className="material-symbols-outlined text-blue-400 group-hover:text-blue-300 transition-colors" style={{ fontFamily: 'Google Symbols' }}>extension</span>
+                    <span className="material-symbols-outlined text-blue-400 group-hover:text-blue-300 transition-colors">extension</span>
                   </div>
                   
                   <h3 className="text-3xl font-sans font-medium text-white mb-4 flex items-center justify-between tracking-tight">
                     Extracurriculars
-                    <span className="text-zinc-500 material-symbols-outlined group-hover:text-blue-400 transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1" style={{ fontFamily: 'Google Symbols' }}>arrow_outward</span>
+                    <span className="text-zinc-500 material-symbols-outlined group-hover:text-blue-400 transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1">arrow_outward</span>
                   </h3>
                   <p className="text-lg text-zinc-400 leading-relaxed mt-auto">
                     Discover impactful, globally accessible extracurricular activities, global competitions, and virtual research programs.
@@ -174,12 +174,12 @@ export default function Home() {
                 
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="w-14 h-14 bg-purple-500/10 rounded-full flex items-center justify-center border border-purple-500/20 mb-8 group-hover:scale-110 transition-transform duration-500">
-                    <span className="material-symbols-outlined text-purple-400 group-hover:text-purple-300 transition-colors" style={{ fontFamily: 'Google Symbols' }}>rocket_launch</span>
+                    <span className="material-symbols-outlined text-purple-400 group-hover:text-purple-300 transition-colors">rocket_launch</span>
                   </div>
                   
                   <h3 className="text-3xl font-sans font-medium text-white mb-4 flex items-center justify-between tracking-tight">
                     Independent Projects
-                    <span className="text-zinc-500 material-symbols-outlined group-hover:text-purple-400 transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1" style={{ fontFamily: 'Google Symbols' }}>arrow_outward</span>
+                    <span className="text-zinc-500 material-symbols-outlined group-hover:text-purple-400 transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1">arrow_outward</span>
                   </h3>
                   <p className="text-lg text-zinc-400 leading-relaxed mt-auto">
                     Launch meaningful, self-driven independent projects that stand out to admissions officers and build real-world skills.

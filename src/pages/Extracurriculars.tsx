@@ -145,7 +145,7 @@ export default function Extracurriculars() {
                 <div className="absolute top-5 right-5 z-20 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider transition-all duration-300 bg-white/5 border border-white/10 px-2.5 py-1.5 rounded-full backdrop-blur-md text-gray-400 opacity-80 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-x-2 sm:group-hover:translate-x-0 group-hover:text-[var(--brand-color)] group-hover:border-[var(--brand-color)] pointer-events-none shadow-lg">
                   <span className="hidden sm:inline">Click for Info</span>
                   <span className="sm:hidden">Tap for Info</span>
-                  <span className="material-symbols-outlined text-[14px]" style={{ fontFamily: 'Google Symbols' }}>ads_click</span>
+                  <span className="material-symbols-outlined text-[14px]">ads_click</span>
                 </div>
 
                 {/* Card Header (Logo & Name) */}
@@ -196,7 +196,7 @@ export default function Extracurriculars() {
                   ) : null}
                   {program.deadline && (
                     <div className="px-2.5 py-1 rounded-md text-xs font-bold bg-orange-500/10 text-orange-300 border border-orange-500/30 flex items-center gap-1.5 transition-all group-hover:bg-orange-500/20 group-hover:border-orange-500/50">
-                      <span className="material-symbols-outlined text-[14px]" style={{ fontFamily: 'Google Symbols' }}>event_upcoming</span>
+                      <span className="material-symbols-outlined text-[14px]">event_upcoming</span>
                       <span className="text-orange-400/70 font-bold tracking-wider uppercase text-[9px]">Deadline:</span>
                       <span>{program.deadline}</span>
                     </div>
@@ -236,12 +236,12 @@ export default function Extracurriculars() {
                       className="flex items-center justify-between gap-2 w-full text-sm font-medium text-gray-300 transition-colors group-hover:text-[var(--brand-color)]"
                     >
                       Visit Official Site
-                      <span className="material-symbols-outlined text-[18px] transition-colors" style={{ fontFamily: 'Google Symbols' }}>open_in_new</span>
+                      <span className="material-symbols-outlined text-[18px] transition-colors">open_in_new</span>
                     </a>
                   ) : (
                     <div className="flex items-center justify-between gap-2 w-full text-sm font-medium text-gray-400">
                       Self-Guided Activity
-                      <span className="material-symbols-outlined text-[18px]" style={{ fontFamily: 'Google Symbols' }}>emoji_objects</span>
+                      <span className="material-symbols-outlined text-[18px]">emoji_objects</span>
                     </div>
                   )}
                 </div>
@@ -253,7 +253,7 @@ export default function Extracurriculars() {
 
         {filteredPrograms.length === 0 && (
           <div className="w-full py-20 text-center">
-            <span className="material-symbols-outlined text-6xl text-gray-600 mb-4" style={{ fontFamily: 'Google Symbols' }}>search_off</span>
+            <span className="material-symbols-outlined text-6xl text-gray-600 mb-4">search_off</span>
             <h3 className="text-xl font-bold text-gray-400 mb-2">No programs found</h3>
             <p className="text-gray-500">Try adjusting your filters to see more results.</p>
             <button 
@@ -296,7 +296,7 @@ export default function Extracurriculars() {
                     onClick={() => setSelectedProgram(null)}
                     className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white transition-colors z-10"
                   >
-                    <span className="material-symbols-outlined text-[20px]" style={{ fontFamily: 'Google Symbols' }}>close</span>
+                    <span className="material-symbols-outlined text-[20px]">close</span>
                   </button>
                   <div className="flex items-center gap-4 sm:gap-5 relative z-10">
                     <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-white/20 p-2 flex-shrink-0 flex items-center justify-center shadow-[0_0_20px_var(--brand-color)]">
@@ -335,7 +335,7 @@ export default function Extracurriculars() {
                     {/* Deadline Box */}
                     <div className="bg-orange-500/5 border border-orange-500/20 rounded-2xl p-4 sm:p-5">
                       <div className="flex items-center gap-2 mb-2 sm:mb-3 text-orange-400">
-                        <span className="material-symbols-outlined text-[18px] sm:text-[20px]" style={{ fontFamily: 'Google Symbols' }}>event_upcoming</span>
+                        <span className="material-symbols-outlined text-[18px] sm:text-[20px]">event_upcoming</span>
                         <h4 className="font-bold text-xs sm:text-sm tracking-wide uppercase">Application Timeline</h4>
                       </div>
                       <p className="text-white font-medium text-base sm:text-lg mb-2">{selectedProgram.deadline}</p>
@@ -347,7 +347,7 @@ export default function Extracurriculars() {
                     {/* Requirements Box */}
                     <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5">
                       <div className="flex items-center gap-2 mb-2 sm:mb-3 text-gray-300">
-                        <span className="material-symbols-outlined text-[18px] sm:text-[20px]" style={{ fontFamily: 'Google Symbols' }}>task_alt</span>
+                        <span className="material-symbols-outlined text-[18px] sm:text-[20px]">task_alt</span>
                         <h4 className="font-bold text-xs sm:text-sm tracking-wide uppercase">Prerequisites</h4>
                       </div>
                       <ul className="flex flex-col gap-1.5 sm:gap-2">
@@ -367,16 +367,16 @@ export default function Extracurriculars() {
                   <div className="flex flex-wrap gap-2 sm:gap-3">
                     {selectedProgram.financialAid.includes("100%") || selectedProgram.financialAid.includes("Free") ? (
                       <span className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-green-500/20 text-green-300 border border-green-500/30 flex items-center gap-1.5 sm:gap-2">
-                        <span className="material-symbols-outlined text-[16px] sm:text-[18px]" style={{ fontFamily: 'Google Symbols' }}>payments</span> Fully Funded
+                        <span className="material-symbols-outlined text-[16px] sm:text-[18px]">payments</span> Fully Funded
                       </span>
                     ) : (
                       <span className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1.5 sm:gap-2">
-                        <span className="material-symbols-outlined text-[16px] sm:text-[18px]" style={{ fontFamily: 'Google Symbols' }}>payments</span> Aid Available
+                        <span className="material-symbols-outlined text-[16px] sm:text-[18px]">payments</span> Aid Available
                       </span>
                     )}
                     {selectedProgram.international.includes("Ethiopia") || selectedProgram.international.includes("African") ? (
                       <span className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 flex items-center gap-1.5 sm:gap-2">
-                        <span className="material-symbols-outlined text-[16px] sm:text-[18px]" style={{ fontFamily: 'Google Symbols' }}>public</span> Ethiopia Focus
+                        <span className="material-symbols-outlined text-[16px] sm:text-[18px]">public</span> Ethiopia Focus
                       </span>
                     ) : null}
                   </div>
@@ -393,12 +393,12 @@ export default function Extracurriculars() {
                       style={{ backgroundColor: 'var(--brand-color)' }}
                     >
                       Visit Official Site
-                      <span className="material-symbols-outlined text-[18px] sm:text-[20px]" style={{ fontFamily: 'Google Symbols' }}>open_in_new</span>
+                      <span className="material-symbols-outlined text-[18px] sm:text-[20px]">open_in_new</span>
                     </a>
                   ) : (
                     <div className="flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-gray-400 bg-white/5 border border-white/10 text-sm sm:text-base">
                       Self-Guided Activity
-                      <span className="material-symbols-outlined text-[18px] sm:text-[20px]" style={{ fontFamily: 'Google Symbols' }}>emoji_objects</span>
+                      <span className="material-symbols-outlined text-[18px] sm:text-[20px]">emoji_objects</span>
                     </div>
                   )}
                 </div>
