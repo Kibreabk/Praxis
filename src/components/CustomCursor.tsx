@@ -44,7 +44,7 @@ export default function CustomCursor() {
       >
         {isHovering && (
           <>
-            <span className="material-symbols-outlined" style={{ fontSize: \'20px\' }}>
+            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>
               arrow_outward
             </span>
             <span className="text-sm font-medium tracking-wide font-sans">Explore</span>
