@@ -1,8 +1,12 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import SequentialText from '../components/SequentialText';
 
 export default function Home() {
+  const { scrollYProgress } = useScroll();
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+
   return (
     <main className="min-h-screen bg-transparent relative overflow-hidden flex flex-col font-sans text-white">
       {/* Dynamic Cosmic Background */}
@@ -70,7 +74,7 @@ export default function Home() {
         </div>
 
         {/* General Overview Section */}
-        <motion.div className="w-full max-w-5xl mx-auto mb-32 text-center perspective-1500 z-20">
+        <motion.div style={{ y: y1 }} className="w-full max-w-5xl mx-auto mb-32 text-center perspective-1500 z-20">
           <motion.div 
             initial={{ rotateX: 90, opacity: 0, scale: 0.5, z: -500 }}
             whileInView={{ rotateX: 0, opacity: 1, scale: 1, z: 0 }}
@@ -100,6 +104,7 @@ export default function Home() {
           
           {/* 1. College Resources */}
           <motion.div
+            style={{ y: y1 }}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, margin: "-100px" }}
@@ -128,6 +133,7 @@ export default function Home() {
   
           {/* 2. Extracurriculars */}
           <motion.div
+            style={{ y: y2 }}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, margin: "-100px" }}
@@ -156,6 +162,7 @@ export default function Home() {
   
           {/* 3. Independent Projects */}
           <motion.div
+            style={{ y: y1 }}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, margin: "-100px" }}
